@@ -13,6 +13,10 @@
 
 ![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/D34E75E6F5B278B33CAAC47921CEA5B4%E7%9A%84%E5%89%AF%E6%9C%AC.png?raw=true)
 
+扫描下载试一试
+
+![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/fim%E5%9B%BE%E7%89%87.png?raw=true)
+
 看着有用的小伙伴多多支持哦！
 
 ![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/C9D410C4-ABB0-4C32-A081-9D9FC5A14155.png?raw=true)
