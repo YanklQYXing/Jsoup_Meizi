@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.kangle.meizipictures.activity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/bottom_ll"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="@color/pink"
+        android:paddingTop="1px"
+        android:layout_height="48dp">
+
+        <RelativeLayout
+            android:id="@+id/home_rl"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="match_parent">
+
+
+            <!--<ImageView-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="@drawable/selector_home"-->
+                <!--android:layout_width="@dimen/_35"-->
+                <!--android:layout_height="@dimen/_30" />-->
+
+            <TextView
+                android:text="妹子"
+                android:textColor="@color/selector_gray_to_red"
+                android:textSize="@dimen/_18"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/collect_rl"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:layout_height="match_parent">
+
+            <!--<ImageView-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="@drawable/selector_collect"-->
+                <!--android:layout_width="@dimen/_30"-->
+                <!--android:layout_height="@dimen/_30" />-->
+
+            <TextView
+                android:text="小电影"
+                android:textColor="@color/selector_gray_to_red"
+                android:textSize="@dimen/_18"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/user_center_rl"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="match_parent">
+
+            <!--<ImageView-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="@drawable/selector_collect"-->
+                <!--android:layout_width="@dimen/_30"-->
+                <!--android:layout_height="@dimen/_30" />-->
+
+
+            <TextView
+                android:text="设置"
+                android:textColor="@color/selector_gray_to_red"
+                android:textSize="@dimen/_18"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line_tv"
+        android:layout_above="@id/bottom_ll"
+        android:background="@color/line_color01"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <FrameLayout
+        android:id="@+id/content_f"
+        android:layout_above="@id/line_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

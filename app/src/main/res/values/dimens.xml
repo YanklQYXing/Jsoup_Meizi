@@ -1,0 +1,53 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+
+    <dimen name="title_height">48dp</dimen>
+    <dimen name="_48">48dp</dimen>
+    <dimen name="_1">1dp</dimen>
+    <dimen name="_2">2dp</dimen>
+    <dimen name="_3">3dp</dimen>
+    <dimen name="_4">4dp</dimen>
+    <dimen name="_5">5dp</dimen>
+    <dimen name="_6">6dp</dimen>
+    <dimen name="_7">7dp</dimen>
+    <dimen name="_8">8dp</dimen>
+    <dimen name="_9">9dp</dimen>
+    <dimen name="_10">10dp</dimen>
+    <dimen name="_11">11dp</dimen>
+    <dimen name="_12">12dp</dimen>
+    <dimen name="_13">13dp</dimen>
+    <dimen name="_14">14dp</dimen>
+    <dimen name="_15">15dp</dimen>
+    <dimen name="_16">16dp</dimen>
+    <dimen name="_17">17dp</dimen>
+    <dimen name="_18">18dp</dimen>
+    <dimen name="_19">19dp</dimen>
+    <dimen name="_20">20dp</dimen>
+    <dimen name="_21">21dp</dimen>
+    <dimen name="_22">22dp</dimen>
+    <dimen name="_23">23dp</dimen>
+    <dimen name="_24">24dp</dimen>
+    <dimen name="_25">25dp</dimen>
+    <dimen name="_26">26dp</dimen>
+    <dimen name="_28">28dp</dimen>
+    <dimen name="_30">30dp</dimen>
+    <dimen name="_35">35dp</dimen>
+    <dimen name="_34">34dp</dimen>
+    <dimen name="_36">36dp</dimen>
+    <dimen name="_40">40dp</dimen>
+    <dimen name="_45">45dp</dimen>
+    <dimen name="_49">49dp</dimen>
+    <dimen name="_50">50dp</dimen>
+    <dimen name="_65">65dp</dimen>
+    <dimen name="_75">75dp</dimen>
+    <dimen name="user_info_tv_size">15dp</dimen>
+
+</resources>

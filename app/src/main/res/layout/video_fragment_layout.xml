@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        android:layout_width="match_parent"
+        android:background="@color/pink"
+        android:layout_height="20dp"></RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/pink"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_10"
+        android:paddingRight="@dimen/_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48">
+
+        <Button
+            android:id="@+id/tuijian"
+            android:gravity="center"
+            android:text="推荐"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+        <Button
+            android:id="@+id/video_btn"
+            android:text="电影"
+            android:gravity="center"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+        <Button
+            android:id="@+id/dianshi"
+            android:text="电视剧"
+            android:gravity="center"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+        <Button
+            android:id="@+id/zongyi"
+            android:text="综艺"
+            android:gravity="center"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+        <Button
+            android:id="@+id/dongman"
+            android:text="动漫"
+            android:gravity="center"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+        <Button
+            android:id="@+id/weidianying"
+            android:text="微电影"
+            android:gravity="center"
+            android:textSize="@dimen/_15"
+            android:textColor="@color/selector_red_to_white"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/video_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/_5"
+    android:paddingBottom="@dimen/_5"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/click_ll"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <ImageView
+                android:id="@+id/small_iv"
+                android:background="@color/back_ground"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <ImageView
+                android:id="@+id/small_iv1"
+                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/name"
+            android:textSize="@dimen/_14"
+            android:layout_marginTop="@dimen/_5"
+            android:textColor="@color/text_color_black"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

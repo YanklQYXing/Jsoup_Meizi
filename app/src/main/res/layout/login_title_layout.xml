@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        android:layout_width="match_parent"
+        android:background="@color/pink"
+        android:layout_height="20dp"></RelativeLayout>
+    <RelativeLayout
+        android:background="@color/pink"
+        android:layout_below="@id/title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <!--
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"-->
+
+        <ImageView
+            android:id="@+id/back_iv"
+            android:layout_width="@dimen/_35"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:paddingBottom="@dimen/_13"
+            android:layout_marginLeft="@dimen/_10"
+            android:paddingRight="@dimen/_15"
+            android:paddingTop="@dimen/_13"
+            android:src="@drawable/back_selector01" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_17" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/share_iv"
+            android:layout_width="@dimen/_40"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:paddingBottom="@dimen/_13"
+            android:paddingRight="@dimen/_15"
+            android:paddingTop="@dimen/_13"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

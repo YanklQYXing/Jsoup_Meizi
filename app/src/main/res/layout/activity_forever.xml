@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_forever"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_16"
+    android:orientation="vertical"
+    tools:context="com.kangle.meizipictures.activity.ForeverActivity">
+
+    <TextView
+        android:text="打开支付宝账单，查看打赏后账单的商品说明，并长按复制，并黏贴到下方输入框中！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="打赏说明："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="1、打赏1元，可连续观看10次妹子"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="2、打赏5元，可连续观看50次妹子"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="3、打赏10元，可连续观看200次妹子"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="4、打赏100元，永久观看"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_10"
+        android:text="5、打赏后，请误删除，删除后无效哦！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:layout_marginTop="@dimen/_15"
+        android:id="@+id/pay_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入商品说明" />
+
+    <Button
+        android:id="@+id/pay_s"
+        android:text="开启永久模式"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48"
+        android:layout_marginTop="@dimen/_48"
+        android:backgroundTint="@color/pink" />
+
+    <TextView
+        android:id="@+id/miyao"
+        android:layout_marginTop="@dimen/_48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

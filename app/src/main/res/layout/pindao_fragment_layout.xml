@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kangle.firstarticle.refreshView.PullToRefreshListView
+        android:id="@+id/list_view"
+        android:divider="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_centerInParent="true"
+        android:text="客观别急，加载中..."
+        android:textSize="@dimen/_15"
+        android:gravity="center"
+        android:textColor="@color/alpha_gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

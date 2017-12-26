@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#303F9F</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--mob-->
+    <color name="page_back">#fff2f2f2</color>
+    <color name="logo_text_color">#ff7f7f7f</color>
+    <color name="login_with_other_plat_text_color">#ff383838</color>
+    <color name="dialog_white_bg">#fbfbfb</color>
+    <!--mob-->
+
+    <color name="gray">#333333</color>
+    <color name="gray01">#666666</color>
+    <color name="white">#ffffff</color>
+    <color name="alpha_white">#99ffffff</color>
+    <color name="alpha_white01">#aaffffff</color>
+    <color name="alpha_white02">#77ffffff</color>
+    <color name="text_color_black">#333333</color>
+    <color name="text_color_rad">#fd4141</color>
+    <color name="text_color_black01">#666666</color>
+    <color name="text_color_gray">#999999</color>
+    <color name="black">#000000</color>
+    <color name="alpha_black">#50000000</color>
+    <color name="alpha_gray">#90000000</color>
+    <color name="user_line">#c8c7cc</color>
+    <color name="alpha_gray01">#50727272</color>
+    <color name="line_color01">#DFDFDF</color>
+    <color name="line_color">#99f6f6f6</color>
+    <color name="home_hint_ev_color">#ffffff</color>
+    <color name="back_ground">#f6f6f6</color>
+    <color name="alpha_line">#10000000</color>
+    <color name="comment_user_name_back_ground">#f0f0f0</color>
+    <color name="shop_name_back_ground">#80000000</color>
+    <!--<color name="rad">#cf0202</color>-->
+    <color name="rad">#fd4141</color>
+    <!--<color name="order_red">#DA0320</color>-->
+    <color name="order_red">#fd4141</color>
+    <color name="service_bg01">#8db7fe</color>
+    <color name="service_bg02">#f7c8bb</color>
+    <color name="service_bg03">#adfaad</color>
+    <color name="service_bg04">#fecb89</color>
+    <color name="barber_name_color">#4b8bff</color>
+    <color name="barber_price_color">#85adfe</color>
+    <color name="text_blue">#71a9fc</color>
+    <color name="apply_back_ground">#f6f6f6</color>
+    <color name="sel_rl_bc">#f9f9f9</color>
+    <color name="search_ll_bc">#f6f6f6</color>
+    <color name="search_hint_text_color">#aac8fe</color>
+
+    <color name="wexin_login">#3cae34</color>
+    <color name="qq_login">#26b8f2</color>
+    <color name="login_c_s">#8B9BF2</color>
+    <color name="login_c_c">#998DF3</color>
+    <color name="login_c_e">#A17FD4</color>
+    <color name="user_set_left">#333333</color>
+    <color name="user_set_right">#666666</color>
+    <color name="user_icon_bc">#E4E4E4</color>
+    <!--粉色-->
+    <color name="pink">#FFB6C1</color>
+
+</resources>
+

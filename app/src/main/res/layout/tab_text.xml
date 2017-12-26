@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_tv"
+    android:textSize="@dimen/_15"
+    android:textColor="@color/selector_red_to_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>

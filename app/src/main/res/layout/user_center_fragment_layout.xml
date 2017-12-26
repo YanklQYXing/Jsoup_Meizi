@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title_in"
+        layout="@layout/login_title_layout"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/back_ground"
+        android:layout_below="@id/title_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/collect_rl"
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="收藏列表"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/history_rl"
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="浏览记录"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="开启缓存"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Switch
+                android:id="@+id/open_cache_switch"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="用户建议"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/clear_rl"
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="清除缓存"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/xiaojiantou"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/cache_tv"
+                android:text="0b"
+                android:textSize="@dimen/_15"
+                android:layout_marginRight="@dimen/_10"
+                android:layout_toLeftOf="@id/xiaojiantou"
+                android:textColor="@color/gray01"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/forever_rl"
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="永久模式"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/about_rl"
+            android:layout_marginTop="@dimen/_5"
+            android:background="@drawable/selector_white_to_line_gray"
+            android:paddingLeft="@dimen/_15"
+            android:paddingRight="@dimen/_15"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48">
+
+            <TextView
+                android:text="关于我们"
+                android:textSize="@dimen/_15"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/more"
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

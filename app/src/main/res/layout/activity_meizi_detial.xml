@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kangle.meizipictures.activity.MeiziDetialActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:transitionName="@string/transition_news_img"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp">
+
+            <com.kangle.meizipictures.weight.MyGridView
+                android:id="@+id/grid_view"
+                android:numColumns="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/collect_btn"
+        android:src="@drawable/selector_collect01"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_15"
+        android:layout_marginBottom="@dimen/_15"
+        android:layout_width="56dp"
+        android:layout_height="56dp" />
+
+    <RelativeLayout
+        android:id="@+id/fukuan_rl"
+        android:background="#30000000"
+        android:padding="@dimen/_50"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@drawable/fukuan_rl_bc"
+            android:layout_centerInParent="true"
+            android:minHeight="200dp"
+            android:padding="@dimen/_15"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="@dimen/_15"
+                android:clickable="true"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_color_black"
+                android:text="哥哥，妹妹很辛苦，要不要犒劳下?"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_20"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:id="@+id/one_t"
+                    android:clickable="true"
+                    android:textSize="@dimen/_14"
+                    android:textColor="@color/pink"
+                    android:text="1元"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/five_t"
+                    android:clickable="true"
+                    android:textSize="@dimen/_14"
+                    android:textColor="@color/pink"
+                    android:text="5元"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/ten_t"
+                    android:clickable="true"
+                    android:textSize="@dimen/_14"
+                    android:textColor="@color/pink"
+                    android:text="10元"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/hundred_t"
+                    android:clickable="true"
+                    android:textSize="@dimen/_14"
+                    android:textColor="@color/pink"
+                    android:text="土豪100元"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <TextView
+                android:text="犒劳助手，点击您的赏金跳转到支付宝扫码界面，点击右上角相册，选择显示有‘赏金’字样的二维码进行支付！^o^"
+                android:textSize="@dimen/_14"
+                android:textColor="@color/gray01"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/share_btn"
+                android:layout_marginTop="@dimen/_20"
+                android:backgroundTint="@color/pink"
+                android:text="分享"
+                android:textColor="@color/white"
+                android:shadowColor="@color/rad"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48" />
+
+            <TextView
+                android:text="分享3人不再显示   3s"
+                android:textSize="@dimen/_10"
+                android:textColor="@color/gray01"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_8"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
