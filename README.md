@@ -7,11 +7,6 @@
 
 有兴趣的小伙伴可以进入jsoup中文官网查看使用的教程：http://www.open-open.com/jsoup
 
-![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/1E70A8694580A4C395C2206F0318C74F.png?raw=true)
-
-![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/6D7A4F972422F5B3249A490647195E66.png?raw=true)
-
-![Image text](https://github.com/YanklQYXing/Jsoup_Meizi/blob/meizi/app/D34E75E6F5B278B33CAAC47921CEA5B4%E7%9A%84%E5%89%AF%E6%9C%AC.png?raw=true)
 
 扫描下载试一试
 
