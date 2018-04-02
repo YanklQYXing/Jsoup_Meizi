@@ -34,6 +34,7 @@ import com.kangle.firstarticle.utils.PreferenceManager;
 import com.kangle.firstarticle.xutil.MyCallBack;
 import com.kangle.firstarticle.xutil.MyGson;
 import com.kangle.firstarticle.xutil.XUtil;
+import com.kangle.meizipictures.GzipRequestInterceptor;
 import com.kangle.meizipictures.R;
 import com.kangle.meizipictures.adapter.GridViewAdapter;
 import com.kangle.meizipictures.base.BaseActivity;
@@ -46,19 +47,41 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
+import org.xutils.http.annotation.HttpResponse;
+import org.xutils.x;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
+import okio.GzipSink;
+import okio.Okio;
+
+import static java.lang.System.in;
 
 public class MeiziDetialActivity extends BaseActivity {
 
@@ -79,6 +102,7 @@ public class MeiziDetialActivity extends BaseActivity {
     private RelativeLayout relativeLayout;
     private Button shareBtn;
     private boolean isGoPay = false;
+    private String[] split;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,15 +115,15 @@ public class MeiziDetialActivity extends BaseActivity {
 
     private void initView() {
         int meiziCishu = PreferenceManager.getInstance().getMeiziCishu();
-        MyLog.log("meiziCishu---"+meiziCishu);
-        PreferenceManager.getInstance().setMeiziCishu(meiziCishu+1);
+        MyLog.log("meiziCishu---" + meiziCishu);
+        PreferenceManager.getInstance().setMeiziCishu(meiziCishu + 1);
         Intent intent = getIntent();
         String meiZiModels = intent.getStringExtra("meiZiModel");
         if (meiZiModels != null) {
             meiZiModel = MyGson.gson.fromJson(meiZiModels, MeiZiModel.class);
         }
         initShowPay();
-        if (meiZiModel!=null){
+        if (meiZiModel != null) {
             try {
                 List<MeiZiModel> all = MyApplication.dbManager.findAll(MeiZiModel.class);
                 if (all != null) {
@@ -112,9 +136,9 @@ public class MeiziDetialActivity extends BaseActivity {
                             MyApplication.dbManager.deleteById(MeiZiModel.class, meiZiModel1.getId());
                         }
                     }
-                    if(!isHave){
+                    if (!isHave) {
                         MyApplication.dbManager.save(meiZiModel);
-                    }else {
+                    } else {
                         MyApplication.dbManager.deleteById(MeiZiModel.class, meiZiModel.getId());
                         meiZiModel.setType(type);
                         MyApplication.dbManager.save(meiZiModel);
@@ -151,7 +175,7 @@ public class MeiziDetialActivity extends BaseActivity {
         }
         try {
             url = uri.toURL();
-            MyGlide.GlideDetail(this,url.toString(),"http://www.mmjpg.com/",ivImage);
+            MyGlide.GlideDetail(this, url.toString(), "http://www.mmjpg.com/", ivImage);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -164,7 +188,7 @@ public class MeiziDetialActivity extends BaseActivity {
             if (all != null) {
                 for (int i = 0; i < all.size(); i++) {
                     MeiZiModel meiZiModel1 = all.get(i);
-                    if (meiZiModel.getYare().endsWith(meiZiModel1.getYare()) && meiZiModel.getNum().endsWith(meiZiModel1.getNum())&&meiZiModel1.getType()==1) { // 数据库存在
+                    if (meiZiModel.getYare().endsWith(meiZiModel1.getYare()) && meiZiModel.getNum().endsWith(meiZiModel1.getNum()) && meiZiModel1.getType() == 1) { // 数据库存在
                         collect_btn.setSelected(true);
                     }
                 }
@@ -189,31 +213,185 @@ public class MeiziDetialActivity extends BaseActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.fukuan_rl);
         int meiziCishu = PreferenceManager.getInstance().getMeiziCishu();
         int sharedNum = PreferenceManager.getInstance().getSharedNum();
-        MyLog.log("meiziCishu"+meiziCishu+"  sharedNum"+sharedNum);
-        if (meiziCishu>=PreferenceManager.getInstance().getTypeNum()&&sharedNum<3){
-            relativeLayout.setVisibility(View.VISIBLE);
-        }else {
-            relativeLayout.setVisibility(View.GONE);
-        }
-        new Handler().postDelayed(new Runnable() {
+        MyLog.log("meiziCishu" + meiziCishu + "  sharedNum" + sharedNum);
+//        if (meiziCishu>=PreferenceManager.getInstance().getTypeNum()&&sharedNum<3){
+//            relativeLayout.setVisibility(View.VISIBLE);
+//        }else {
+//            relativeLayout.setVisibility(View.GONE);
+//        }
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                relativeLayout.setVisibility(View.GONE);
+//            }
+//        },3000);
+    }
+
+   /* private void initGzip() {
+        new Thread(new Runnable() {
+
             @Override
             public void run() {
-                relativeLayout.setVisibility(View.GONE);
+
+                try {
+                    boolean isGzip = false;
+
+                    // 初始化httpClient对象
+                    DefaultHttpClient httpClient = new DefaultHttpClient();
+
+                    // 初始化httpGe对象
+                    HttpGet get = new HttpGet("http://mobileif.maizuo.com/city");
+                    // 1.发送请求头:`Accept-Encoding:gzip`
+                    get.addHeader("Accept-Encoding", "gzip");
+
+                    // HttpGet get = new HttpGet("http://httpbin.org/gzip");
+
+                    // 发起请求
+                    HttpResponse response = httpClient.execute(get);
+                    if (response.getStatusLine().getStatusCode() == 200) {
+                        // 2. 取的响应头`Content-Encoding`,判断是否包含Content-Encoding:gzip
+                        Header[] headers = response.getHeaders("Content-Encoding");
+                        for (Header header : headers) {
+                            String value = header.getValue();
+                            if (value.equals("gzip")) {
+                                isGzip = true;
+                            }
+                        }
+
+                        // 3.相应的解压
+                        String result;
+                        HttpEntity entity = response.getEntity();
+                        if (isGzip) {// gzip解压
+                            InputStream in = entity.getContent();
+
+                            GZIPInputStream gzipIn = new GZIPInputStream(in);
+
+                            // inputStream-->string
+                            result = convertStreamToString(gzipIn);
+                        } else {// 标准解压
+
+                            // 打印响应结果
+                            result = EntityUtils.toString(entity);
+                        }
+                        System.out.println("result:" + result);
+                    }
+
+                } catch (ClientProtocolException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
             }
-        },3000);
+        }).start();
+
+    }*/
+
+    public static String convertStreamToString(InputStream is) throws IOException {
+        try {
+            if (is != null) {
+                StringBuilder sb = new StringBuilder();
+                String line;
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                    // BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                    while ((line = reader.readLine()) != null) {
+                        // sb.append(line);
+                        sb.append(line).append("\n");
+                    }
+                } finally {
+                    is.close();
+                }
+                return sb.toString();
+            } else {
+                return "";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
     private void initDate() {
 
-        XUtil.Get((NetConfig.GET_LENGTH_GET + meiZiModel.getNum()), new MyCallBack<String>(this) {
+        String url = "http://www.mmjpg.com/data.php?id=" + meiZiModel.getNum() + "&page=8999";
+//        String url = "http://www.mmjpg.com/data.php?id="+ meiZiModel.getNum()+"";
+        MyLog.log("-------url--------" + url);
+        RequestParams builder = new RequestParams(url);
+        builder.addHeader("Accept", "*/*");
+        builder.addHeader("Accept-Encoding", "gzip");
+        builder.addHeader("Accept-Language", "zh-CN,zh;q=0.9");
+        builder.addHeader("Cache-Control", "no-cache");
+        builder.addHeader("Connection", "keep-alive");
+        builder.addHeader("Host", "www.mmjpg.com");
+        builder.addHeader("Pragma", "no-cache");
+        builder.addHeader("Referer", "http://www.mmjpg.com/mm/" + meiZiModel.getNum());
+        builder.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3047.4 Safari/537.36");
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .get()
+                .url(url)
+                .header("Accept", "*/*")
+                .header("Accept-Encoding", "gzip")
+                .header("Content-Encoding", "gzip")
+                .header("Accept-Language", "zh-CN,zh;q=0.9")
+                .header("Cache-Control", "no-cache")
+                .header("Connection", "keep-alive")
+                .header("Host", "www.mmjpg.com")
+                .header("Pragma", "no-cache")
+                .header("Referer", "http://www.mmjpg.com/mm/" + meiZiModel.getNum())
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3047.4 Safari/537.36")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onSuccess(String result) {
-                super.onSuccess(result);
-//                System.out.print("詳情 ： "+result);
-                initHtml(result);
+            public void onFailure(Call call, IOException e) {
+                XUtil.Get((NetConfig.GET_LENGTH_GET + meiZiModel.getNum()), new MyCallBack<String>(MeiziDetialActivity.this) {
+                    @Override
+                    public void onSuccess(String result) {
+                        super.onSuccess(result);
+                        initHtml(result);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    InputStream in = response.body().byteStream();
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                    ByteArrayInputStream in = new ByteArrayInputStream(bytes);
+                    try {
+                        GZIPInputStream ungzip = new GZIPInputStream(in);
+                        byte[] buffer = new byte[1024];
+                        int n;
+                        while ((n = ungzip.read(buffer)) >= 0) {
+                            out.write(buffer, 0, n);
+                        }
+                    } catch (IOException e) {
+                        MyLog.log("gzip uncompress error." + e);
+                    }
+                    byte[] bytes = out.toByteArray();
+                    String s = new String(bytes,"UTF-8");
+                    split = s.split(",");
+                    XUtil.Get((NetConfig.GET_LENGTH_GET + meiZiModel.getNum()), new MyCallBack<String>(MeiziDetialActivity.this) {
+                        @Override
+                        public void onSuccess(String result) {
+                            super.onSuccess(result);
+                            initHtml(result);
+                        }
+                    });
+                }
             }
         });
+
     }
+
 
     /**
      * 從html裡邊禍去總共有多少張圖片
@@ -237,8 +415,13 @@ public class MeiziDetialActivity extends BaseActivity {
             }
             MyLog.log("element.html() : " + element.html() + "  max : " + max);
         }
+        MyLog.log("split.length---------------"+split.length+"--------max-------"+max);
         for (int i = 0; i < max; i++) {
-            urls.add(NetConfig.URL_SOURCE_BIG + meiZiModel.getYare() + "/" + meiZiModel.getNum() + "/" + (i + 1) + ".jpg");
+            if (split.length>0&&split.length>i&&max==split.length){
+                urls.add(NetConfig.URL_SOURCE_BIG + meiZiModel.getYare() + "/" + meiZiModel.getNum() + "/" + (i + 1) +'i'+split[i]+ ".jpg");
+            }else {
+                urls.add(NetConfig.URL_SOURCE_BIG + meiZiModel.getYare() + "/" + meiZiModel.getNum() + "/" + (i + 1) + ".jpg");
+            }
         }
         adapter.notifyDataSetChanged();
     }
@@ -279,7 +462,7 @@ public class MeiziDetialActivity extends BaseActivity {
                     if (!selected) { // 收藏
                         meiZiModel.setType(1);
                         MyApplication.dbManager.save(meiZiModel);
-                    }else {
+                    } else {
                         meiZiModel.setType(0);
                         MyApplication.dbManager.save(meiZiModel);
                     }
@@ -293,7 +476,7 @@ public class MeiziDetialActivity extends BaseActivity {
                 textIntent.putExtra(Intent.EXTRA_TEXT, "http://fir.im/pdh5");
                 startActivity(Intent.createChooser(textIntent, getResources().getString(R.string.app_name)));
                 int sharedNum = PreferenceManager.getInstance().getSharedNum();
-                if((sharedNum+1)==3){ // 分享够了就设置分享次数为0，设置妹子次数为0
+                if ((sharedNum + 1) == 3) { // 分享够了就设置分享次数为0，设置妹子次数为0
                     PreferenceManager.getInstance().setSharedNum(0);
                     PreferenceManager.getInstance().setMeiziCishu(0);
 
@@ -302,9 +485,9 @@ public class MeiziDetialActivity extends BaseActivity {
                         public void run() {
                             relativeLayout.setVisibility(View.GONE);
                         }
-                    },2000);
-                }else {
-                    PreferenceManager.getInstance().setSharedNum(PreferenceManager.getInstance().getSharedNum()+1);
+                    }, 2000);
+                } else {
+                    PreferenceManager.getInstance().setSharedNum(PreferenceManager.getInstance().getSharedNum() + 1);
                 }
 
                 shareBtn.setEnabled(false);
@@ -313,7 +496,7 @@ public class MeiziDetialActivity extends BaseActivity {
                     public void run() {
                         shareBtn.setEnabled(true);
                     }
-                },2000);
+                }, 2000);
                 break;
             case R.id.one_t: // 1元
                 payType = 1;
@@ -375,7 +558,7 @@ public class MeiziDetialActivity extends BaseActivity {
     // 保存付款码  todo 付款成功后将账单里边的商品说明复制过去
     private void saveCode() {
         int fukuan_code = 0;
-        switch (payType){
+        switch (payType) {
             case 1:
                 fukuan_code = R.drawable.pay_1;
                 break;
@@ -392,14 +575,15 @@ public class MeiziDetialActivity extends BaseActivity {
         BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(fukuan_code);
         saveBitmap(drawable.getBitmap(), "fukuan_code.png", Bitmap.CompressFormat.PNG);
     }
+
     /**
      * 将Bitmap以指定格式保存到指定路径
      */
     public void saveBitmap(Bitmap bitmap, String name, Bitmap.CompressFormat format) {
         // 创建一个位于SD卡上的文件
-        File file = new File(Environment.getExternalStorageDirectory(),name);
+        File file = new File(Environment.getExternalStorageDirectory(), name);
         FileOutputStream out = null;
-        try{
+        try {
             // 打开指定文件输出流
             out = new FileOutputStream(file);
             // 将位图输出到指定文件
@@ -418,7 +602,7 @@ public class MeiziDetialActivity extends BaseActivity {
         try {
             isGoPay = true;
             String saomiao = "alipayqr://platformapi/startapp?saId=10000007";// 扫描
-            Intent intent = Intent.parseUri(saomiao, Intent.URI_INTENT_SCHEME );
+            Intent intent = Intent.parseUri(saomiao, Intent.URI_INTENT_SCHEME);
             startActivity(intent);
         } catch (Exception e) {
             Toast.makeText(this, "无法跳转到支付宝，请检查您是否安装了支付宝！", Toast.LENGTH_SHORT).show();
@@ -429,8 +613,8 @@ public class MeiziDetialActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
 
-        if (isGoPay){
-            Intent intent = new Intent(this,ForeverActivity.class);
+        if (isGoPay) {
+            Intent intent = new Intent(this, ForeverActivity.class);
             startActivity(intent);
             isGoPay = false;
         }

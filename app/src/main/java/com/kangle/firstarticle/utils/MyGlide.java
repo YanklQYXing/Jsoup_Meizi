@@ -26,14 +26,14 @@ public class MyGlide {
     public static void GlideDetail(Context context, String url, String headerUrl, ImageView imageView){
         LazyHeaders.Builder builder = new LazyHeaders.Builder();
         builder.addHeader("Accept","image/webp,image/apng,image/*,*/*;q=0.8");
-        builder.addHeader("Accept-Encoding","gzip, deflate");
+        builder.addHeader("Accept-Encoding","gzip, deflate, sdch");
         builder.addHeader("Accept-Language","zh-CN,zh;q=0.9");
         builder.addHeader("Cache-Control","no-cache");
         builder.addHeader("Connection","keep-alive");
         builder.addHeader("Host","img.mmjpg.com");
         builder.addHeader("Pragma","no-cache");
         builder.addHeader("Referer",headerUrl);
-        builder.addHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36");
+        builder.addHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3047.4 Safari/537.36");
         GlideUrl cookie1 = new GlideUrl(url, builder.build());
         boolean openCache = PreferenceManager.getInstance().getOpenCache();
         if (openCache){

@@ -132,7 +132,7 @@ public class PindaoFragment extends BaseFragment {
         }
         MyLog.log("加载的网址----"+u);
         RequestParams params = new RequestParams(u);
-//        params.addHeader("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
+        params.addHeader("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
         params.addHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36");
         params.addHeader("Referer","http://i.meizitu.net");
         x.http().get(params,new MyCallBack<String>(getContext()){
